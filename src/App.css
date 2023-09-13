@@ -1,0 +1,33 @@
+.divider:after,
+.divider:before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eee;
+}
+
+.h-custom {
+  height: 100%;
+}
+
+@media (max-width: 450px) {
+  .h-custom {
+    height: 100%;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.my-container {
+  min-height: 100vh;
+  /* This ensures the Container takes up at least the viewport height */
+  display: flex;
+  align-items: stretch;
+  /* Stretch columns to match the height */
+}
