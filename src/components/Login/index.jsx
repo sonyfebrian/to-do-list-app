@@ -9,6 +9,8 @@ import {
   FormGroup,
   Label,
 } from "reactstrap";
+import { useNavigate } from "react-router-dom";
+import userData from "../../constants/data";
 import { logo, top, bottom } from "../../assets";
 import "./styles.css";
 const Login = () => {
@@ -25,6 +27,25 @@ const Login = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate(); // Get the navigate function
+
+  const handleLogin = () => {
+    const user = userData.find((u) => u.email === email);
+
+    if (!user) {
+      setError("User not found. Please register first.");
+    } else if (user.password !== password) {
+      setError("Invalid password.");
+    } else {
+      setError("");
+      // Successful login, navigate to the dashboard
+      navigate("/dashboard"); // Redirect to the dashboard route
+    }
+  };
   return (
     <>
       <Container fluid>
@@ -61,6 +82,8 @@ const Login = () => {
                   id="email"
                   placeholder="Email"
                   bsSize="lg"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </FormGroup>
               <FormGroup className="mb-4">
@@ -71,19 +94,27 @@ const Login = () => {
                   id="password"
                   placeholder="Password"
                   bsSize="lg"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </FormGroup>
               <Button
                 className="mb-0 px-5 w-100"
                 style={{ backgroundColor: "#154886" }}
                 size="lg"
+                onClick={handleLogin}
               >
                 Sign In
               </Button>
               <div className="divider d-flex align-items-center my-4">
+                {error && <p>{error}</p>}
                 <p className="text-center fw-bold mx-3 mb-0">Or</p>
               </div>
-              <Button className="mb-0 px-5 w-100 google-btn" size="lg">
+              <Button
+                className="mb-0 px-5 w-100"
+                style={{ backgroundColor: "#ffffff", color: "black" }}
+                size="lg"
+              >
                 <img
                   className="google-icon"
                   src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
