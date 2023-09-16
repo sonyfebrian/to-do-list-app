@@ -1,20 +1,25 @@
 import { useState } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { userAction } from "../../store/User.store";
 import { Collapse, Navbar, NavbarToggler, Container } from "reactstrap";
 import { MdOutlineDateRange } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const NavbarTop = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const toggleDropdown = () => {
     setOpen(!open);
   };
-
-  const storedUserData = JSON.parse(localStorage.getItem("user"));
+  const handleLogout = () => {
+    dispatch(userAction.signOut());
+    navigate("/");
+  };
   const toggle = () => setIsOpen(!isOpen);
-
+  const users = useSelector((state) => state.user.user);
   return (
     <>
       <Navbar expand="lg" className="mb-3 shadow custom-navbar">
@@ -60,11 +65,9 @@ const NavbarTop = () => {
               <div className="flex justify-center items-center space-x-3 cursor-pointer">
                 <MdOutlineDateRange />
                 <span className="flex-grow flex flex-col ">
-                  <span className="text-xs text-gray-900">
-                    {storedUserData?.name}
-                  </span>
+                  <span className="text-xs text-gray-900">{users?.name}</span>
                   <span className="text-gray-400 text-xs  mt-0.5 text-right">
-                    {storedUserData?.role}
+                    {users?.role}
                   </span>
                 </span>
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">
@@ -77,8 +80,9 @@ const NavbarTop = () => {
               </div>
               {open && (
                 <div className="absolute w-32 px-3 py-2 dark:bg-gray-800 bg-white rounded-lg shadow border dark:border-transparent">
-                  <a
-                    href="#"
+                  <button
+                    type="button" // Change to "button" to prevent form submission
+                    onClick={handleLogout} // Call the handleLogout function on button click
                     className="flex items-center transform transition-colors duration-200 border-r-4 border-transparent hover:border-red-600"
                   >
                     <div className="text-red-600">
@@ -98,7 +102,7 @@ const NavbarTop = () => {
                       </svg>
                     </div>
                     Logout
-                  </a>
+                  </button>
                 </div>
               )}
             </div>
