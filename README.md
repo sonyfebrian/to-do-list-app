@@ -9,7 +9,7 @@
   - Email: user2@example.com
   - Password: password2
 
-[Demo](https://to-do-list-app-kappa-sooty.vercel.app/)
+<a href="https://to-do-list-app-kappa-sooty.vercel.app/" target="_blank">Demo</a>
 
 ## Initialize project
 
