@@ -12,6 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import userData from "../../constants/data";
 import { logo, top, bottom } from "../../assets";
+
 import "./styles.css";
 const Login = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
@@ -31,19 +32,20 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     const user = userData.find((u) => u.email === email);
 
     if (!user) {
-      setError("User not found. Please register first.");
+      setError("User not found. ");
     } else if (user.password !== password) {
       setError("Invalid password.");
     } else {
       setError("");
       // Successful login, navigate to the dashboard
       navigate("/dashboard"); // Redirect to the dashboard route
+      localStorage.setItem("user", JSON.stringify(user));
     }
   };
   return (

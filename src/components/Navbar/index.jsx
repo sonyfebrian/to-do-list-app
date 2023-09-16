@@ -1,27 +1,6 @@
 import { useState } from "react";
 
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  // NavbarBrand,
-  Container,
-  // InputGroup,
-  // InputGroupText,
-  // Input,
-  // Nav,
-  // NavItem,
-  // NavLink,
-  // UncontrolledDropdown,
-  // // Dropdown,
-  // DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem,
-  // // NavbarText,
-  // InputGroup,
-  // InputGroupText,
-  // Input,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarToggler, Container } from "reactstrap";
 import { MdOutlineDateRange } from "react-icons/md";
 import "./styles.css";
 
@@ -32,7 +11,10 @@ const NavbarTop = () => {
   const toggleDropdown = () => {
     setOpen(!open);
   };
+
+  const storedUserData = JSON.parse(localStorage.getItem("user"));
   const toggle = () => setIsOpen(!isOpen);
+
   return (
     <>
       <Navbar expand="lg" className="mb-3 shadow custom-navbar">
@@ -78,9 +60,11 @@ const NavbarTop = () => {
               <div className="flex justify-center items-center space-x-3 cursor-pointer">
                 <MdOutlineDateRange />
                 <span className="flex-grow flex flex-col ">
-                  <span className="text-xs text-gray-900">Holden</span>
+                  <span className="text-xs text-gray-900">
+                    {storedUserData?.name}
+                  </span>
                   <span className="text-gray-400 text-xs  mt-0.5 text-right">
-                    admin
+                    {storedUserData?.role}
                   </span>
                 </span>
                 <div className="w-12 h-12 rounded-full overflow-hidden border-2 dark:border-white border-gray-900">

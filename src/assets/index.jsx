@@ -5,5 +5,6 @@ import logoD from "./logo.png";
 import oval from "./square.png";
 import dokumen from "./document-sign.png";
 import logoText from "./text-icon.png";
+import optionSvg from "./options.svg";
 
-export { logo, top, bottom, logoD, oval, dokumen, logoText };
+export { logo, top, bottom, logoD, oval, dokumen, logoText, optionSvg };
