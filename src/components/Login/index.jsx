@@ -157,7 +157,7 @@ const Login = () => {
                   >
                     {showPassword ? (
                       <InputGroupText>
-                        <AiOutlineEye className="w-5 sm:w-5 h-10 sm:h-10 " />
+                        <AiOutlineEye className="w-5 sm:w-5 h-8 sm:h-8 " />
                       </InputGroupText>
                     ) : (
                       <InputGroupText>

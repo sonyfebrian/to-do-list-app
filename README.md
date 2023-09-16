@@ -1,9 +1,15 @@
 ## User
 
-email: "user1@example.com",
-password: "password1",
-email: "user2@example.com",
-password: "password2",
+- **User 1**
+
+  - Email: user1@example.com
+  - Password: password1
+
+- **User 2**
+  - Email: user2@example.com
+  - Password: password2
+
+[Demo](https://to-do-list-app-kappa-sooty.vercel.app/)
 
 ## Initialize project
 
