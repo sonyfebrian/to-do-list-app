@@ -9,8 +9,8 @@ import {
   FormGroup,
   Label,
   FormFeedback,
-  InputGroup,
-  InputGroupText,
+  // InputGroup,
+  // InputGroupText,
 } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -138,36 +138,47 @@ const Login = () => {
                 <FormFeedback>{error.email}</FormFeedback>
               </FormGroup>
               <FormGroup className="mb-4">
-                <Label for="password">Password</Label>
-                <InputGroup>
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    name="password"
-                    id="password"
-                    placeholder="Password"
-                    bsSize="lg"
-                    value={password}
-                    invalid={!!error.password}
-                    onChange={({ target }) => setPassword(target.value)}
-                  />
+                <div className="py-2">
+                  <Label>Password</Label>
+                  <div className="relative">
+                    <div className="input-container">
+                      <input
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={({ target }) => setPassword(target.value)}
+                        type={showPassword ? "password" : "text"}
+                        className="text-md block px-3 py-2 rounded-lg w-full
+              bg-white border-2 border-gray-300 placeholder-gray-600 shadow-md
+              focus:placeholder-gray-500
+              focus:bg-white
+              focus:border-gray-600
+              focus:outline-none"
+                      />
+                      <div className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                        <AiOutlineEye
+                          onClick={togglePasswordVisibility}
+                          className={`h-10 text-gray-700 ${
+                            showPassword ? "block" : "hidden"
+                          }`}
+                        />
 
-                  <span
-                    onClick={togglePasswordVisibility}
-                    style={{ cursor: "pointer" }}
-                  >
-                    {showPassword ? (
-                      <InputGroupText>
-                        <AiOutlineEye className="w-5 sm:w-5 h-8 sm:h-8 " />
-                      </InputGroupText>
-                    ) : (
-                      <InputGroupText>
-                        <AiOutlineEyeInvisible className="w-5 sm:w-5 h-10 sm:h-10 " />
-                      </InputGroupText>
-                    )}
+                        <AiOutlineEyeInvisible
+                          onClick={togglePasswordVisibility}
+                          className={`h-10 text-gray-700 ${
+                            showPassword ? "hidden" : "block"
+                          }`}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <span className="flex items-center font-medium tracking-wide text-red-500 text-xs mt-1 ml-1">
+                    {error.password}
                   </span>
-                </InputGroup>
-                <FormFeedback>{error.password}</FormFeedback>
+                </div>
               </FormGroup>
+
               <Button
                 className="mb-0 px-5 w-100"
                 style={{ backgroundColor: "#154886" }}
